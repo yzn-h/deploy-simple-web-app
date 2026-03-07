@@ -7,7 +7,7 @@ This is a template for a new TanStack Start project with React, TypeScript, and 
 To add components to your app, run the following command:
 
 ```bash
-npx shadcn@latest add button
+bunx --bun shadcn@latest add button
 ```
 
 This will place the ui components in the `components` directory.
