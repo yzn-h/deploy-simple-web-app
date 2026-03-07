@@ -7,6 +7,9 @@ import tailwindcss from "@tailwindcss/vite"
 import { nitro } from "nitro/vite"
 
 const config = defineConfig({
+  server: {
+    allowedHosts: ["3000.yznh.dev"]
+  },
   plugins: [
     devtools(),
     nitro(),
@@ -16,7 +19,11 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
-    viteReact(),
+    viteReact({
+      babel: {
+        plugins: ['babel-plugin-react-compiler']
+      }
+    }),
   ],
 })
 
