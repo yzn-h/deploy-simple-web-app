@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "pglite:dev": "pglite-server --db=./dev-db --run 'bun --bun dev' --include-database-url",
-    "build": "vite build",
+    "build": "bun --bun vite build",
     "pglite:build": "pglite-server --db=./dev-db --run 'bun --bun run build' --include-database-url",
     "preview": "vite preview",
     "pglite:preview": "pglite-server --db=./dev-db --run 'bun --bun preview' --include-database-url",
