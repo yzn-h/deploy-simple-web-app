@@ -6,7 +6,7 @@ import { db } from "@/db"
 import { onboardingProgress, organizations } from "@/db/schema"
 import { auth } from "@/lib/auth"
 
-export type OnboardingState =
+type OnboardingState =
   | "unauthenticated"
   | "needs-name"
   | "needs-organization"
@@ -57,7 +57,7 @@ async function readOnboardingSnapshot(headers: HeadersInit) {
   return {
     state: "needs-organization",
     userName,
-    organizationName: progress?.organization?.name ?? null,
+    organizationName: progress.organization?.name ?? null,
   } satisfies OnboardingSnapshot
 }
 
@@ -167,11 +167,14 @@ export const completeOnboarding = createServerFn({
           name: organizations.name,
         })
 
-      const organization =
-        insertedOrganization[0] ??
-        (await tx.query.organizations.findFirst({
+      let organization: { id: string; name: string } | undefined =
+        insertedOrganization[0]
+
+      if (insertedOrganization.length === 0) {
+        organization = await tx.query.organizations.findFirst({
           where: eq(organizations.ownerUserId, session.user.id),
-        }))
+        })
+      }
 
       if (!organization) {
         throw new Error("ORGANIZATION_CREATE_FAILED")

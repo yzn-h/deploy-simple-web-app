@@ -133,14 +133,14 @@ function SocialLoginStep() {
 
 function NameStep({ initialName }: { initialName: string }) {
   const router = useRouter()
-  const [name, setName] = useState(initialName)
   const [error, setError] = useState("")
   const [isSaving, setIsSaving] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const trimmedName = name.trim()
+    const formData = new FormData(event.currentTarget)
+    const trimmedName = `${formData.get("name") ?? ""}`.trim()
 
     if (!trimmedName) {
       setError("الاسم مطلوب.")
@@ -189,8 +189,7 @@ function NameStep({ initialName }: { initialName: string }) {
               id="name"
               name="name"
               autoComplete="name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
+              defaultValue={initialName}
               placeholder="اكتب اسمك الكامل"
               disabled={isSaving}
               aria-invalid={!!error}
