@@ -21,4 +21,4 @@ bun run build
 bun run start
 ```
 
-Set required variables from `.env` on your host before running the deployment command.
+`bun run start` runs `drizzle-kit push` before the production server boots, so the deployment environment must have `DATABASE_URL` set and access to the schema files.
