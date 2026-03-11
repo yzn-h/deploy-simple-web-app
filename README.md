@@ -1,21 +1,24 @@
-# TanStack Start + shadcn/ui
+# Simple Web App
 
-This is a template for a new TanStack Start project with React, TypeScript, and shadcn/ui.
+## Run in development
 
-## Adding components
-
-To add components to your app, run the following command:
+Install dependencies once and copy the environment file, then start the app.
 
 ```bash
-bunx --bun shadcn@latest add button
+bun install
+cp .env.example .env
+bun run pglite:dev
 ```
 
-This will place the ui components in the `components` directory.
+If you only need the Vite dev server without pglite, use `bun run dev` instead.
 
-## Using components
+## Deploy
 
-To use the components in your app, import them as follows:
+Build once, then start the generated server build.
 
-```tsx
-import { Button } from "@/components/ui/button";
+```bash
+bun run build
+bun run start
 ```
+
+Set required variables from `.env` on your host before running the deployment command.
