@@ -27,7 +27,7 @@ const run = async (cmd: Array<string>) => {
     }
 }
 
-// await run(['bun', '--bun', 'drizzle-kit', 'push'])
+await run(['bun', '--bun', 'drizzle-kit', 'push'])
 await run(['bun', 'run', '.output/server/index.mjs'])
 
 export { }
