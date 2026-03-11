@@ -1,4 +1,4 @@
-const shutdownSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM']
+const shutdownSignals: Array<Signals> = ['SIGINT', 'SIGTERM']
 
 let activeProcess: Bun.Subprocess | null = null
 
@@ -8,7 +8,7 @@ for (const signal of shutdownSignals) {
     })
 }
 
-const run = async (cmd: string[]) => {
+const run = async (cmd: Array<string>) => {
     const processHandle = Bun.spawn({
         cmd,
         cwd: process.cwd(),
@@ -27,7 +27,7 @@ const run = async (cmd: string[]) => {
     }
 }
 
-await run(['bun', '--bun', 'drizzle-kit', 'push'])
+// await run(['bun', '--bun', 'drizzle-kit', 'push'])
 await run(['bun', 'run', '.output/server/index.mjs'])
 
-export {}
+export { }
